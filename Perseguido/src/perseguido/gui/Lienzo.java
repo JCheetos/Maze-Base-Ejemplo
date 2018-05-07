@@ -23,31 +23,29 @@ import perseguido.logica.Roca;
  *
  * @author daza
  */
-public class Lienzo extends Canvas implements KeyListener{
+public class Lienzo extends Canvas implements KeyListener {
+
     Personaje heroe = new Heroe();
     Timer timer;
     BufferedImage imgBuffer;
     String[][] matriz;
     ArrayList<Personaje> rocas;
-    
-    public Lienzo(){
+
+    public Lienzo() {
         rocas = new ArrayList<Personaje>();
         timer = new Timer();
         timer.schedule(new Actualizador(), 0, 100);
         imgBuffer = new BufferedImage(1600, 1400, BufferedImage.OPAQUE);
     }
-       
 
     public void iniciarLienzo(String[][] matriz) {
         this.matriz = matriz;
     }
-    
-    
 
     @Override
     public void paint(Graphics g) {
         //super.paint(g); //To change body of generated methods, choose Tools | Templates.
-    
+
         Graphics miG = imgBuffer.getGraphics();
         miG.drawImage(new ImageIcon(getClass().getResource("../imagenes/fondo.png")).getImage(), 0, 0, null);
         for (int f = 0; f < matriz.length; f++) {
@@ -69,36 +67,35 @@ public class Lienzo extends Canvas implements KeyListener{
 
     @Override
     public void keyTyped(KeyEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        heroe.update(e.getKeyChar());
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        heroe.update(e.getKeyCode());
+        
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    private class Actualizador extends TimerTask{
+
+    private class Actualizador extends TimerTask {
 
         @Override
         public void run() {
             Iterator<Personaje> it = rocas.iterator();
-            heroe.update();           
-            while(it.hasNext()){
+            heroe.update();
+            while (it.hasNext()) {
                 Personaje r = it.next();
-                if(r.getRect().intersects(heroe.getRect())){
+                if (r.getRect().intersects(heroe.getRect())) {
                     heroe.cambiarSentido();
                     break;
                 }
             }
             repaint();
         }
-        
+
     }
-    
-    
+
 }

@@ -57,7 +57,7 @@ public class Heroe implements Personaje {
 
     }
 
-    public void update(int c) {
+    public void update(char c) {
         switch (c) {
             case 37:
                 sentido = 3;
