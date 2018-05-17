@@ -17,7 +17,7 @@ public class EventosTeclado extends JFrame implements KeyListener {
         contenedor.setLayout(new FlowLayout());
         linea = System.getProperty("line.separator");
         texto = new JTextField(20);
-        informacion = new JTextArea(6, 20);
+        informacion = new JTextArea(18, 40);
         informacion.setEditable(false);
         texto.addKeyListener(this);
         principal = new JPanel();
@@ -25,7 +25,7 @@ public class EventosTeclado extends JFrame implements KeyListener {
         JScrollPane visualizacion = new JScrollPane(informacion);
         contenedor.add(principal, BorderLayout.NORTH);
         contenedor.add(visualizacion, BorderLayout.CENTER);
-        setSize(300, 200);
+        setSize(500, 400);
         setVisible(true);
     }
 
@@ -49,6 +49,7 @@ public class EventosTeclado extends JFrame implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        informacion.setText("");
         char tecla = e.getKeyChar();
         int codigo = e.getKeyCode();
         if (Character.isISOControl(tecla)) {
@@ -71,5 +72,6 @@ public class EventosTeclado extends JFrame implements KeyListener {
         }
         codigotecla = "Codigo Tecla = " + codigo + "(" + KeyEvent.getKeyText(codigo) + ")";
         informacion.append("EVENTO KEYRELEASED: " + linea + " " + cadena + linea + " " + codigotecla + linea);
+        texto.setText("");
     }
 }
