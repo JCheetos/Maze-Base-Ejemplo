@@ -59,22 +59,22 @@ public class Heroe implements Personaje {
 
     public void update(char c) {
         switch (c) {
-            case 37:
+            case 'a':
                 sentido = 3;
                 xPos += -32;
                 yPos += 0;
                 break;
-            case 38:
+            case 'w':
                 sentido = 0;
                 xPos += 0;
                 yPos += -32;
                 break;
-            case 39:
+            case 'd':
                 sentido = 1;
                 xPos += 32;
                 yPos += 0;
                 break;
-            case 40:
+            case 's':
                 sentido = 2;
                 xPos += 0;
                 yPos += 32;
@@ -112,6 +112,10 @@ public class Heroe implements Personaje {
         Rectangle rect = null;
         rect = new Rectangle(xPos, yPos, imagen.getWidth(null), imagen.getHeight(null));
         return rect;
+    }
+
+    @Override
+    public void update(int c) {
     }
 
 }
